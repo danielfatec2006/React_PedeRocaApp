@@ -13,7 +13,8 @@ import { AuthProvider } from './context/AuthContext'
 
 function App() {
   const [user, setUser] = useState(undefined)
-  const { auth } = userAuthentication()
+  const { auth, logout } = userAuthentication()
+  const [menunav, setMenuNav] = useState(1);
 
   const loadingUser =  user === undefined
 
@@ -27,8 +28,10 @@ function App() {
       setProdutos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
     getProdutos()
-    onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
       setUser(user)})
+
+      return () => unsubscribe()
   }, [auth])
 
   if(loadingUser) {
@@ -37,7 +40,7 @@ function App() {
 
   return (
     <>
-    <AuthProvider value={{ user }}>
+    <AuthProvider value={{ user, logout }}>
       <Home />
       <FooterDesktop />
       <Products list={produtos} />

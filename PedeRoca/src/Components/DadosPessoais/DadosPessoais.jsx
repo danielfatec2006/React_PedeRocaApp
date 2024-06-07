@@ -1,0 +1,27 @@
+// eslint-disable-next-line no-unused-vars
+import React from 'react'
+import styles from './DadosPessoais.module.css'
+
+const DadosPessoais = ({ onBack }) => {
+  return (
+    <div  className={styles.div_dados_usuario}>
+      <h3>Nome</h3>
+      <input placeholder={"Hugo Frajacomo"} className={styles.inputs_dados_pessoais}></input>
+      <h3>CPF</h3>
+      <input placeholder={"000.000.000.000-00"}  className={styles.inputs_dados_pessoais}></input>
+      <h3>Telefone</h3>
+      <input placeholder={"(00) 00000-0000"} className={styles.inputs_dados_pessoais}></input>
+      <h3>E-mail</h3>
+      <input placeholder={"hugo@gmail.com"}  className={styles.inputs_dados_pessoais}></input>
+      <button className={styles.btn_entrega}>Alterar</button>
+      <button className={styles.btn_entrega}>Salvar</button>
+      <div className={styles.div_voltar}>
+        <button className={styles.btn_voltar} onClick={onBack}>
+          <i className="bi bi-arrow-return-left" id={styles.icone_voltar}></i>
+        </button>
+      </div>
+    </div>
+  )
+}
+
+export default DadosPessoais;
